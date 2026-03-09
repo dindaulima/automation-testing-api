@@ -1,11 +1,18 @@
 import pytest
 from api.user_api import UserAPI
+from api.pet_api import PetAPI
 
 
 @pytest.fixture
 def user_api():
     """Fixture for UserAPI client"""
     return UserAPI()
+
+
+@pytest.fixture
+def pet_api():
+    """Fixture for PetAPI client"""
+    return PetAPI()
 
 
 @pytest.fixture
@@ -43,5 +50,65 @@ def sample_users():
             "password": "pass456",
             "phone": "2222222222",
             "userStatus": 1
+        }
+    ]
+
+
+@pytest.fixture
+def sample_pet():
+    """Fixture for sample pet data"""
+    return {
+        "id": 1,
+        "name": "Fluffy",
+        "photoUrls": ["http://example.com/fluffy.jpg"],
+        "status": "available",
+        "category": {
+            "id": 1,
+            "name": "Dogs"
+        },
+        "tags": [
+            {
+                "id": 1,
+                "name": "friendly"
+            }
+        ]
+    }
+
+
+@pytest.fixture
+def sample_pets():
+    """Fixture for multiple pets"""
+    return [
+        {
+            "id": 2,
+            "name": "Buddy",
+            "photoUrls": ["http://example.com/buddy.jpg"],
+            "status": "available",
+            "category": {
+                "id": 1,
+                "name": "Dogs"
+            },
+            "tags": [
+                {
+                    "id": 2,
+                    "name": "loyal"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Whiskers",
+            "photoUrls": ["http://example.com/whiskers.jpg"],
+            "status": "available",
+            "category": {
+                "id": 2,
+                "name": "Cats"
+            },
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "playful"
+                }
+            ]
         }
     ]

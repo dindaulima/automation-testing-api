@@ -7,7 +7,8 @@ Automated API testing project for the Petstore Swagger API (https://petstore.swa
 ```
 ├── api/                      # API client implementations
 │   ├── __init__.py
-│   └── user_api.py          # User API endpoints client
+│   ├── user_api.py          # User API endpoints client
+│   └── pet_api.py           # Pet API endpoints client
 ├── config/                   # Configuration files
 │   └── settings.py          # Environment and settings configuration
 ├── tests/                    # Test cases
@@ -16,7 +17,11 @@ Automated API testing project for the Petstore Swagger API (https://petstore.swa
 │   ├── test_user_read.py    # User retrieval tests
 │   ├── test_user_update.py  # User update tests
 │   ├── test_user_delete.py  # User deletion tests
-│   └── test_user_auth.py    # User authentication tests
+│   ├── test_user_auth.py    # User authentication tests
+│   ├── test_pet_create.py   # Pet creation tests
+│   ├── test_pet_read.py     # Pet retrieval tests
+│   ├── test_pet_update.py   # Pet update tests
+│   └── test_pet_delete.py   # Pet deletion tests
 ├── .env                      # Environment variables
 ├── .env.example             # Example environment variables
 ├── pytest.ini               # Pytest configuration
@@ -33,12 +38,20 @@ Automated API testing project for the Petstore Swagger API (https://petstore.swa
   - Delete users
   - User authentication (login/logout)
 
+- **Pet API Testing**: Comprehensive test coverage for all pet endpoints
+  - Add pets to store
+  - Retrieve pets (by ID and by status/tags)
+  - Update pet information (JSON and form data)
+  - Delete pets from store
+  - Upload pet images
+
 - **Test Organization**: Tests organized by functionality with pytest markers
   - `@pytest.mark.user` - User-related tests
+  - `@pytest.mark.pet` - Pet-related tests
   - `@pytest.mark.smoke` - Quick smoke tests
   - `@pytest.mark.regression` - Regression tests
 
-- **Fixtures**: Reusable fixtures for API client and test data
+- **Fixtures**: Reusable fixtures for API clients and test data
 - **Configuration**: Environment-based configuration for flexible deployment
 
 ## Installation
@@ -71,7 +84,12 @@ TIMEOUT=10
 
 ## Running Tests
 
-### Run all tests
+###
+
+### Run only pet tests
+```bash
+pytest -m pet
+``` Run all tests
 ```bash
 pytest
 ```
@@ -133,7 +151,44 @@ allure serve allure-results
 - Update with empty body
 
 ### User Deletion Tests (`test_user_delete.py`)
-- Delete existing user
+- Delete exis
+
+### Pet Creation Tests (`test_pet_create.py`)
+- Add a new pet
+- Add pet with minimal data
+- Add pet with special characters
+- Add pet with multiple photos
+- Add pet with tags
+- Add pet with category
+
+### Pet Retrieval Tests (`test_pet_read.py`)
+- Get pet by ID
+- Validate pet response structure
+- Get non-existent pet
+- Find pets by status (available, pending, sold)
+- Find pets by multiple statuses
+- Get pet with invalid ID
+- Find pets by tags
+
+### Pet Update Tests (`test_pet_update.py`)
+- Update existing pet
+- Update pStore endpoints (place order, get order, delete order)
+- [ ] Implement response validation schemas
+- [ ] Add performance testing
+- [ ] Add authentication token handling
+- [ ] Add request/response logging
+- [ ] Add database validation
+- [ ] Add API contract testing
+- [ ] Add image uploadiple tags
+
+### Pet Deletion Tests (`test_pet_delete.py`)
+- Delete existing pet
+- Delete non-existent pet
+- Validate deletion response structure
+- Delete pet with invalid ID
+- Delete pet twice (idempotency)
+- Delete pet with numeric ID
+- Delete pet with zero/negative IDting user
 - Delete non-existent user
 - Delete user with special characters
 - Delete user with numeric username
